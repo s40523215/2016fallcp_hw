@@ -2,7 +2,7 @@
 <html lang="en"
 >
 <head>
-    <title>2016Fall CP 期中練習 - 2016Fall CPB 課程網誌 (虎尾科大MDE)</title>
+    <title>w14 - 2016Fall CPB 課程網誌 (虎尾科大MDE)</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -166,18 +166,18 @@ init_mathjax = function() {
 init_mathjax();
 </script>
 
-<link rel="canonical" href="./2016fall-cp-qi-zhong-lian-xi.html">
+<link rel="canonical" href="./w14.html">
 
         <meta name="author" content="yen" />
         <meta name="keywords" content="使用導引" />
-        <meta name="description" content="從 IPV6 相關 RFCs 查詢得到的資料中, 如何在各組的網誌中整理一份能夠連結到各個未過時 (non-obsolete) 的 RFC 文件?" />
+        <meta name="description" content="畫線練習" />
 
         <meta property="og:site_name" content="2016Fall CPB 課程網誌 (虎尾科大MDE)" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="2016Fall CP 期中練習"/>
-        <meta property="og:url" content="./2016fall-cp-qi-zhong-lian-xi.html"/>
-        <meta property="og:description" content="從 IPV6 相關 RFCs 查詢得到的資料中, 如何在各組的網誌中整理一份能夠連結到各個未過時 (non-obsolete) 的 RFC 文件?"/>
-        <meta property="article:published_time" content="2016-11-04" />
+        <meta property="og:title" content="w14"/>
+        <meta property="og:url" content="./w14.html"/>
+        <meta property="og:description" content="畫線練習"/>
+        <meta property="article:published_time" content="2016-12-12" />
             <meta property="article:section" content="Misc" />
             <meta property="article:tag" content="使用導引" />
             <meta property="article:author" content="yen" />
@@ -290,10 +290,10 @@ init_mathjax();
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="./2016fall-cp-qi-zhong-lian-xi.html"
+                    <a href="./w14.html"
                        rel="bookmark"
-                       title="Permalink to 2016Fall CP 期中練習">
-                        2016Fall CP 期中練習
+                       title="Permalink to w14">
+                        w14
                     </a>
                 </h1>
             </header>
@@ -303,7 +303,7 @@ init_mathjax();
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2016-11-04T12:00:00+08:00"> 週五 04 十一月 2016</time>
+        <i class="fa fa-calendar"></i><time datetime="2016-12-12T12:00:00+08:00"> 週一 12 十二月 2016</time>
     </span>
             <span class="label label-default">By</span>
             <a href="./author/yen.html"><i class="fa fa-user"></i> yen</a>
@@ -315,96 +315,10 @@ init_mathjax();
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <p>從 <a href="http://www.rfc-editor.org/search/rfc_search_detail.php?page=All&title=ipv6&pubstatus%5B%5D=Any&pub_date_type=any&sortkey=Number&sorting=ASC%22">IPV6 相關 RFCs 查詢</a>得到的資料中, 如何在各組的網誌中整理一份能夠連結到各個未過時 (non-obsolete) 的 RFC 文件?</p>
+                <p>畫線練習</p>
 
 
-<p>參考程式碼:</p>
-<pre class="brush: python">
-data = open("midterm_list.txt").read()
-line_list = data.splitlines()
-count = 0
-for line in line_list:
-    each_line_list = line.split("\t")
-    try:
-        if "Obsoleted" in each_line_list[5]:
-            count = count + 1
-            print(each_line_list[0])
-    except:
-        pass
-print(count)
-</pre>
-
-<p>接下來使用 Brython 程式碼, 將程式執行結果直接顯示在網頁上.</p>
-<p>尚未失效的 IPV6 相關 RFC 如下:</p>
-<!-- 導入 Brython 標準程式庫 -->
-
-<script type="text/javascript" 
-    src="https://cdn.rawgit.com/brython-dev/brython/master/www/src/brython_dist.js">
-</script>
-
-<!-- 啟動 Brython -->
-
-<script>
-window.onload=function(){
-brython(1);
-}
-</script>
-
-<!-- 以下利用 Brython 程式執行檔案讀取與比對流程 -->
-
-<!-- 假如需要用圖型表示數字, 則利用 canvas 繪圖 -->
-
-<!-- <canvas id="plotarea" width="600" height="400"></canvas> -->
-
-<div id="container"></div>
-
-<script type="text/python3" id="script1">
-from browser import document, html
-container = document['container']
-data = open("./../midterm_list.txt").read()
-line_list = data.splitlines()
-count = 0
-output = ""
-for line in line_list:
-    each_line_list = line.split("\t")
-    try:
-        if "Obsoleted" not in each_line_list[5]:
-            count = count + 1
-            output += html.A(each_line_list[0], href="http://www.rfc-editor.org/info/"+ each_line_list[0].lower().replace(" ", "")) + " | "
-            if count%10 == 0:
-                output += html.BR()
-    except:
-        pass
-output += html.BR() + html.BR()  + "共有 " + str(count)+ " 份文件尚未失效!"
-container <= output
-</script>
-
-<p><br />提供上述結果的 Brython 程式如下:
-<br /></p>
-<pre class="brush: python">
-<div id="container"></div>
-
-<script type="text/python3" id="script1">
-from browser import document, html
-container = document['container']
-data = open("./../midterm_list.txt").read()
-line_list = data.splitlines()
-count = 0
-output = ""
-for line in line_list:
-    each_line_list = line.split("\t")
-    try:
-        if "Obsoleted" not in each_line_list[5]:
-            count = count + 1
-            output += html.A(each_line_list[0], href="http://www.rfc-editor.org/info/"+ each_line_list[0].lower().replace(" ", "")) + " | "
-            if count%10 == 0:
-                output += html.BR()
-    except:
-        pass
-output += html.BR() + html.BR()  + "共有 " + str(count)+ " 份文件尚未失效!"
-container <= output
-</script>
-</pre>
+<p>開始第14週畫線練習</p>
             </div>
             <!-- /.entry-content -->
         </article>
