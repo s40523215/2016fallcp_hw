@@ -167,28 +167,30 @@
 <v t="amd.20160727120222.1"><vh>@edit 20160921.md</vh></v>
 <v t="leo.20161014142409.1"><vh>@edit 20161014.md</vh></v>
 <v t="leo.20161128140344.1"><vh>@edit 20161114.md</vh></v>
-<v t="leo.20161114144449.1"><vh>@edit 20161128.md</vh></v>
+<v t="leo.20161114144449.1"><vh>@edit 20161121.md</vh></v>
+<v t="leo.20161212144124.1"><vh>@edit 20161128.md</vh></v>
+<v t="leo.20161212143617.1"><vh>@edit 20161205.md</vh></v>
 <v t="leo.20161212141518.1"><vh>@edit 20161212.md</vh></v>
 </v>
 </v>
 </v>
-<v t="amd.20160106094754.1" a="E"><vh>@path ./../content/pages</vh>
+<v t="amd.20160106094754.1"><vh>@path ./../content/pages</vh>
 <v t="amd.20160106094829.1" a="E"><vh>yen 所寫的 pages 文章</vh>
 <v t="amd.20160106094844.1"><vh>@edit pages_1.md</vh></v>
 </v>
 </v>
+<v t="leo.20161212143032.1"><vh>@button https server</vh></v>
 <v t="amd.20161004202833.1"><vh>@edit ../README.md</vh></v>
-<v t="yen.20161022111056.1"><vh>@button https server</vh></v>
 <v t="yen.20161022151749.1"><vh>產生 .key 與 .crt</vh></v>
-<v t="yen.20161105200127.1" a="E"><vh>選課人員名單</vh>
+<v t="yen.20161105200127.1"><vh>選課人員名單</vh>
 <v t="yen.20161105200140.1"><vh>@edit a.txt</vh></v>
 <v t="yen.20161105200241.1"><vh>@edit b.txt</vh></v>
 </v>
-<v t="yen.20161105200145.1" a="E"><vh>分組名單</vh>
+<v t="yen.20161105200145.1"><vh>分組名單</vh>
 <v t="yen.20161105200154.1"><vh>@edit agroup.txt</vh></v>
 <v t="yen.20161105200234.1"><vh>@edit bgroup.txt</vh></v>
 </v>
-<v t="leo.20161121135318.2" a="E"><vh>Recovered Nodes</vh>
+<v t="leo.20161121135318.2"><vh>Recovered Nodes</vh>
 <v t="leo.20161121135318.3"><vh>Recovered node "封面投影片內容" from @clean index.html</vh>
 <v t="leo.20161121135318.4"><vh>old:封面投影片內容</vh></v>
 <v t="leo.20161121135318.5"><vh>new:封面投影片內容</vh></v>
@@ -530,6 +532,28 @@ Created by [s40523215](http://s40523215.github.io/kmolab/blog/)
 [s40523215](blog/index.html)
 
 </t>
+<t tx="leo.20161212143032.1">@language python
+import os
+import subprocess
+import threading
+import http.server, ssl
+
+def domake():
+    # build directory
+    os.chdir("./../")
+    server_address = ('localhost', 6443)
+    httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
+    httpd.socket = ssl.wrap_socket(httpd.socket,
+                                   server_side=True,
+                                   certfile='localhost.crt',
+                                   keyfile='localhost.key',
+                                   ssl_version=ssl.PROTOCOL_TLSv1)
+    print("6443 https server started")
+    httpd.serve_forever()
+
+# 利用執行緒執行 https 伺服器
+make = threading.Thread(target=domake)
+make.start()</t>
 <t tx="yen.20161011114704.1">&lt;section data-markdown&gt;
     &lt;script type="text/template"&gt;
 @others
@@ -1079,28 +1103,6 @@ make.start()
 * 按 Esc 可以退出全螢幕或全域檢視 (Escape)
 
 </t>
-<t tx="yen.20161022111056.1">@language python
-import os
-import subprocess
-import threading
-import http.server, ssl
-
-def domake():
-    # build directory
-    os.chdir("./../")
-    server_address = ('localhost', 5443)
-    httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
-    httpd.socket = ssl.wrap_socket(httpd.socket,
-                                   server_side=True,
-                                   certfile='localhost.crt',
-                                   keyfile='localhost.key',
-                                   ssl_version=ssl.PROTOCOL_TLSv1)
-    print("5443 https server started")
-    httpd.serve_forever()
-
-# 利用執行緒執行 https 伺服器
-make = threading.Thread(target=domake)
-make.start()</t>
 <t tx="yen.20161022151749.1">sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout localhost.key -out localhost.crt
 
 </t>
