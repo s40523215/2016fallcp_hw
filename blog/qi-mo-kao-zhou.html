@@ -323,8 +323,9 @@ init_mathjax();
 我覺得這一週教的東西沒有到很難,但是對我這個第一次
 碰這些東西的人來說有一些些難度,但是我還是有點做出
 東西的感覺
-<pre class="brush:python">
-<div id="con"></div></p>
+<pre class="brush:python"></p>
+<div id="con"></div>
+
 <script type="text/python3">
 from browser import document as do
 from browser import html
@@ -381,18 +382,7 @@ do["b1"].bind("click", compa)
 樣一個小遊戲,就要打不少的程式,雖然遊戲不錯,但是自己
 動手寫程式,還真有一些些困難</p>
 <pre class="brush:python">
-<script type="text/javascript" 
-    src="https://cdn.rawgit.com/brython-dev/brython/master/www/src/brython_dist.js">
-</script>
 
-<!-- 啟動 Brython -->
-<script>
-window.onload=function(){
-brython(1);
-}
-</script> 
-
-<!-- 以下實際利用  Brython 畫圖 -->
 <script type="text/python3">
 from browser import alert
 import random
@@ -410,7 +400,6 @@ while ans != a_in:
     guess += 1
 
 alert("恭喜答對 ,一共猜了" + (str(guess)) + "次")
-</script>
 </pre>
 
 </script>
