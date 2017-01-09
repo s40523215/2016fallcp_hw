@@ -60,6 +60,22 @@ while 標準答案 != 你猜的數字:
         print("太小了，再猜一次 :)加油")
     你猜的數字 = int(input("請輸入您所猜的整數:"))
     猜測次數 += 1
+    from browser import alert
+import random
+
+ans = random.randint(1, 100)
+
+a_in = int(input("輸入整數:"))
+guess = 1
+
+while ans != a_in:
+    if a_in &lt; ans:
+        a_in = int(input("too small"))
+    else:
+        a_in = int(input("too big"))
+    guess += 1
+
+alert("恭喜答對 ,一共猜了" + (str(guess)) + "次")
 
 print("猜對了！總共猜了", 猜測次數, "次")
 &lt;/script&gt;
@@ -357,4 +373,7 @@ for stud_num in alist:
     container2 &lt;= mlink
 &lt;/script&gt;
 &lt;/pre&gt;</summary><category term="評分"></category></entry><entry><title>W18</title><link href="./w18.html" rel="alternate"></link><published>2016-01-09T14:35:00+08:00</published><updated>2016-01-09T14:35:00+08:00</updated><author><name>40523215</name></author><id>tag:,2016-01-09:./w18.html</id><summary type="html">&lt;p&gt;w18&lt;/p&gt;
-</summary><category term="Brython"></category></entry></feed>
+
+
+&lt;p&gt;w15週心得與程式範例
+程式範例&lt;/p&gt;</summary><category term="Brython"></category></entry></feed>
