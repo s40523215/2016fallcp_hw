@@ -125,11 +125,6 @@ document["but3"].bind("click", guess)
 
 &lt;p&gt;&lt;button id="but3"&gt;玩猜數字遊戲&lt;/button&gt;&lt;/p&gt;
 &lt;pre class="brush: python"&gt;
-&lt;div id="id3"&gt;&lt;/div&gt;
-&lt;script type="text/python3"&gt;
-from browser import document
-from browser import html
-import random
 
 id3 = document["id3"]
 def guess(ev):
