@@ -7,9 +7,8 @@
 我覺得這一週教的東西沒有到很難,但是對我這個第一次
 碰這些東西的人來說有一些些難度,但是我還是有點做出
 東西的感覺
-&lt;pre class="brush:python"&gt;&lt;/p&gt;
-&lt;div id="con"&gt;&lt;/div&gt;
-
+&lt;pre class="brush: python"&gt;
+&lt;div id="con"&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;script type="text/python3"&gt;
 from browser import document as do
 from browser import html
@@ -65,8 +64,7 @@ do["b1"].bind("click", compa)
 這一週教的東西是和電腦玩猜數字,這感覺很不錯,原來這
 樣一個小遊戲,就要打不少的程式,雖然遊戲不錯,但是自己
 動手寫程式,還真有一些些困難&lt;/p&gt;
-&lt;pre class="brush:python"&gt;
-
+&lt;pre class="brush: python"&gt;
 &lt;script type="text/python3"&gt;
 from browser import alert
 import random
