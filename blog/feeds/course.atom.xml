@@ -157,8 +157,6 @@ def guess(ev):
     id3 &lt;= "猜對了！答案為" + str(標準答案) + ", 總共猜了" + str(猜測次數) + "次"
 
 document["but3"].bind("click", guess)
-&lt;/script&gt;
-&lt;button id="but3"&gt;玩猜數字遊戲&lt;/button&gt;
 
 &lt;/pre&gt;
 
