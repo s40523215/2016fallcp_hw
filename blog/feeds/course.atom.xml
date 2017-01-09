@@ -57,8 +57,8 @@ do["b1"].bind("click", compa)
 &lt;button id="b1"&gt;compa&lt;/button&gt;
 &lt;/pre&gt;
 
-&lt;/script&gt;
-
+&lt;p&gt;&lt;/script&gt;
+&lt;/script&gt;&lt;/p&gt;
 &lt;p&gt;w16週心得與程式範例
 心得
 這一週教的東西是和電腦玩猜數字,這感覺很不錯,原來這
