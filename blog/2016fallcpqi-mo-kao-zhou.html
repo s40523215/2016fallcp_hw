@@ -323,86 +323,123 @@ init_mathjax();
 我覺得這一週教的東西沒有到很難,但是對我這個第一次
 碰這些東西的人來說有一些些難度,但是我還是有點做出
 東西的感覺
-<pre class="brush: python">
-<!-- 以下可以執行  Brython 程式 --></p>
-<div id="con"></div>
-
-<script type="text/python3">
-from browser import document as do
-from browser import html
-c = do["con"]
-def compa(e):
-    your_input = input("請輸入一個整數!")
-    # 如何判斷所輸入的整數比 10 大
-
-    if int(your_input) > 10:
-        c <= "所輸入的整數:" + your_input + "比 10 大" + html.BR()
-    else:
-        c <= "所輸入的整數:" + your_input + "比 10 小" + html.BR()
-
-#print("test")
-'''
-for i in range(5):
-    c <= "test" + html.BR()
-'''
-do["b1"].bind("click", compa)
+<!-- 導入 Brython 標準程式庫 --></p>
+<script type="text/javascript" 
+    src="https://cdn.rawgit.com/brython-dev/brython/master/www/src/brython_dist.js">
 </script>
 
-<p><button id="b1">compa</button></p>
+<!-- 啟動 Brython -->
 
-<pre class="brush: python">
-<div id="con"></div>
+<script>
+window.onload=function(){
+brython(1);
+}
+</script>
+
+<!-- 以下可以執行  Brython 程式 -->
+
 <script type="text/python3">
-from browser import document as do
-from browser import html
-c = do["con"]
-def compa(e):
-    your_input = input("請輸入一個整數!")
-    # 如何判斷所輸入的整數比 10 大
+from browser import document
+from browser import alert
 
-    if int(your_input) > 10:
-        c <= "所輸入的整數:" + your_input + "比 10 大" + html.BR()
-    else:
-        c <= "所輸入的整數:" + your_input + "比 10 小" + html.BR()
+def get_input(ev):
+    the_input= input("請輸入")
+    alert("輸入為:"+str(the_input))
 
-#print("test")
-'''
-for i in range(5):
-    c <= "test" + html.BR()
-'''
-do["b1"].bind("click", compa)
+document['ch01'].bind('click',get_input)
+</script>
+
+<p><button id="ch01">取輸入後, 列印出來</button></p>
+<pre class="brush: python">
+
+def get_input(ev):
+    the_input= input("請輸入")
+    alert("輸入為:"+str(the_input))
+
+document['ch01'].bind('click',get_input)
 </pre>
 
-<p></script>
-<button id="b1">compa</button></p>
+</script>
+
+<div id="container"></div>
+
+<script type="text/python3">
+from browser import document as doc
+from browser import html
+# 利用 document 根據 div 標註 id 設為 container 變數
+container = doc['container']
+
+# 因為此函式與滑鼠互動, 需要 event 當作輸入
+def numPrint(ev):
+    mystring = ""
+    num = input("請輸入重複執行次數:")
+    #for i in range(1, 11):
+    for i in range(1, int(num)+1):
+        mystring += str(i) + ": hello mde" + html.BR()
+    container <= mystring
+
+# 與 id 為 'w13' 對應的 button 綁定, 且滑鼠 click 後, 呼叫 numPrint 函式執行
+doc['w13'].bind('click',numPrint)
+</script>
+
+<p><button id="w13">取重複執行次數後, 列印出來</button></p>
 <p>w16週心得與程式範例
 心得
 這一週教的東西是和電腦玩猜數字,這感覺很不錯,原來這
 樣一個小遊戲,就要打不少的程式,雖然遊戲不錯,但是自己
 動手寫程式,還真有一些些困難</p>
-<!-- 以下實際利用  Brython 畫圖 -->
+<!-- 導入 Brython 標準程式庫 -->
 
-<pre class="brush: python">
+<script type="text/javascript" 
+    src="https://cdn.rawgit.com/brython-dev/brython/master/www/src/brython_dist.js">
+</script>
+
+<!-- 啟動 Brython -->
+
+<script>
+window.onload=function(){
+brython(1);
+}
+</script>
+
+<!-- 以下可以執行  Brython 程式 -->
+
+<div id="id3"></div>
+
 <script type="text/python3">
-from browser import alert
+from browser import document
+from browser import html
 import random
 
-ans = random.randint(1, 100)
+id3 = document["id3"]
+def guess(ev):
+    # 清除 id3 中的內容
+    id3.clear()
+    id3 <= "開始玩猜數字遊戲" + html.BR()
+    標準答案 = random.randint(1, 100)
+    你猜的數字 = int(input("請輸入您所猜整數:"))
+    猜測次數 = 1
+    while 標準答案 != 你猜的數字:
+        if 標準答案 < 你猜的數字:
+            #print("太大了，再猜一次 :)加油")
+            # 清除 id3 中的內容
+            id3.clear()
+            id3 <= "猜第" + str(猜測次數) + "次, 太大了，再猜一次 :)加油" + html.BR()
+        else:
+            #print("太小了，再猜一次 :)加油")
+            # 清除 id3 中的內容
+            id3.clear()
+            id3 <= "猜第" + str(猜測次數) + "次, 太小了，再猜一次 :)加油" + html.BR()
+        你猜的數字 = int(input("請輸入您所猜整數:"))
+        猜測次數 += 1
 
-a_in = int(input("輸入整數:"))
-guess = 1
+    #print("猜對了！總共猜了", 猜測次數, "次")
+    id3 <= "猜對了！答案為" + str(標準答案) + ", 總共猜了" + str(猜測次數) + "次"
 
-while ans != a_in:
-    if a_in < ans:
-        a_in = int(input("too small"))
-    else:
-        a_in = int(input("too big"))
-    guess += 1
-
-alert("恭喜答對 ,一共猜了" + (str(guess)) + "次")
-</pre>
-
+document["but3"].bind("click", guess)
 </script>
+
+<p><button id="but3">玩猜數字遊戲</button></p>
             </div>
             <!-- /.entry-content -->
         </article>

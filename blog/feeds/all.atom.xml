@@ -7,86 +7,123 @@
 我覺得這一週教的東西沒有到很難,但是對我這個第一次
 碰這些東西的人來說有一些些難度,但是我還是有點做出
 東西的感覺
-&lt;pre class="brush: python"&gt;
-&lt;!-- 以下可以執行  Brython 程式 --&gt;&lt;/p&gt;
-&lt;div id="con"&gt;&lt;/div&gt;
-
-&lt;script type="text/python3"&gt;
-from browser import document as do
-from browser import html
-c = do["con"]
-def compa(e):
-    your_input = input("請輸入一個整數!")
-    # 如何判斷所輸入的整數比 10 大
-
-    if int(your_input) &gt; 10:
-        c &lt;= "所輸入的整數:" + your_input + "比 10 大" + html.BR()
-    else:
-        c &lt;= "所輸入的整數:" + your_input + "比 10 小" + html.BR()
-
-#print("test")
-'''
-for i in range(5):
-    c &lt;= "test" + html.BR()
-'''
-do["b1"].bind("click", compa)
+&lt;!-- 導入 Brython 標準程式庫 --&gt;&lt;/p&gt;
+&lt;script type="text/javascript" 
+    src="https://cdn.rawgit.com/brython-dev/brython/master/www/src/brython_dist.js"&gt;
 &lt;/script&gt;
 
-&lt;p&gt;&lt;button id="b1"&gt;compa&lt;/button&gt;&lt;/p&gt;
+&lt;!-- 啟動 Brython --&gt;
 
-&lt;pre class="brush: python"&gt;
-&lt;div id="con"&gt;&lt;/div&gt;
+&lt;script&gt;
+window.onload=function(){
+brython(1);
+}
+&lt;/script&gt;
+
+&lt;!-- 以下可以執行  Brython 程式 --&gt;
+
 &lt;script type="text/python3"&gt;
-from browser import document as do
-from browser import html
-c = do["con"]
-def compa(e):
-    your_input = input("請輸入一個整數!")
-    # 如何判斷所輸入的整數比 10 大
+from browser import document
+from browser import alert
 
-    if int(your_input) &gt; 10:
-        c &lt;= "所輸入的整數:" + your_input + "比 10 大" + html.BR()
-    else:
-        c &lt;= "所輸入的整數:" + your_input + "比 10 小" + html.BR()
+def get_input(ev):
+    the_input= input("請輸入")
+    alert("輸入為:"+str(the_input))
 
-#print("test")
-'''
-for i in range(5):
-    c &lt;= "test" + html.BR()
-'''
-do["b1"].bind("click", compa)
+document['ch01'].bind('click',get_input)
+&lt;/script&gt;
+
+&lt;p&gt;&lt;button id="ch01"&gt;取輸入後, 列印出來&lt;/button&gt;&lt;/p&gt;
+&lt;pre class="brush: python"&gt;
+
+def get_input(ev):
+    the_input= input("請輸入")
+    alert("輸入為:"+str(the_input))
+
+document['ch01'].bind('click',get_input)
 &lt;/pre&gt;
 
-&lt;p&gt;&lt;/script&gt;
-&lt;button id="b1"&gt;compa&lt;/button&gt;&lt;/p&gt;
+&lt;/script&gt;
+
+&lt;div id="container"&gt;&lt;/div&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document as doc
+from browser import html
+# 利用 document 根據 div 標註 id 設為 container 變數
+container = doc['container']
+
+# 因為此函式與滑鼠互動, 需要 event 當作輸入
+def numPrint(ev):
+    mystring = ""
+    num = input("請輸入重複執行次數:")
+    #for i in range(1, 11):
+    for i in range(1, int(num)+1):
+        mystring += str(i) + ": hello mde" + html.BR()
+    container &lt;= mystring
+
+# 與 id 為 'w13' 對應的 button 綁定, 且滑鼠 click 後, 呼叫 numPrint 函式執行
+doc['w13'].bind('click',numPrint)
+&lt;/script&gt;
+
+&lt;p&gt;&lt;button id="w13"&gt;取重複執行次數後, 列印出來&lt;/button&gt;&lt;/p&gt;
 &lt;p&gt;w16週心得與程式範例
 心得
 這一週教的東西是和電腦玩猜數字,這感覺很不錯,原來這
 樣一個小遊戲,就要打不少的程式,雖然遊戲不錯,但是自己
 動手寫程式,還真有一些些困難&lt;/p&gt;
-&lt;!-- 以下實際利用  Brython 畫圖 --&gt;
+&lt;!-- 導入 Brython 標準程式庫 --&gt;
 
-&lt;pre class="brush: python"&gt;
+&lt;script type="text/javascript" 
+    src="https://cdn.rawgit.com/brython-dev/brython/master/www/src/brython_dist.js"&gt;
+&lt;/script&gt;
+
+&lt;!-- 啟動 Brython --&gt;
+
+&lt;script&gt;
+window.onload=function(){
+brython(1);
+}
+&lt;/script&gt;
+
+&lt;!-- 以下可以執行  Brython 程式 --&gt;
+
+&lt;div id="id3"&gt;&lt;/div&gt;
+
 &lt;script type="text/python3"&gt;
-from browser import alert
+from browser import document
+from browser import html
 import random
 
-ans = random.randint(1, 100)
+id3 = document["id3"]
+def guess(ev):
+    # 清除 id3 中的內容
+    id3.clear()
+    id3 &lt;= "開始玩猜數字遊戲" + html.BR()
+    標準答案 = random.randint(1, 100)
+    你猜的數字 = int(input("請輸入您所猜整數:"))
+    猜測次數 = 1
+    while 標準答案 != 你猜的數字:
+        if 標準答案 &lt; 你猜的數字:
+            #print("太大了，再猜一次 :)加油")
+            # 清除 id3 中的內容
+            id3.clear()
+            id3 &lt;= "猜第" + str(猜測次數) + "次, 太大了，再猜一次 :)加油" + html.BR()
+        else:
+            #print("太小了，再猜一次 :)加油")
+            # 清除 id3 中的內容
+            id3.clear()
+            id3 &lt;= "猜第" + str(猜測次數) + "次, 太小了，再猜一次 :)加油" + html.BR()
+        你猜的數字 = int(input("請輸入您所猜整數:"))
+        猜測次數 += 1
 
-a_in = int(input("輸入整數:"))
-guess = 1
+    #print("猜對了！總共猜了", 猜測次數, "次")
+    id3 &lt;= "猜對了！答案為" + str(標準答案) + ", 總共猜了" + str(猜測次數) + "次"
 
-while ans != a_in:
-    if a_in &lt; ans:
-        a_in = int(input("too small"))
-    else:
-        a_in = int(input("too big"))
-    guess += 1
+document["but3"].bind("click", guess)
+&lt;/script&gt;
 
-alert("恭喜答對 ,一共猜了" + (str(guess)) + "次")
-&lt;/pre&gt;
-
-&lt;/script&gt;</summary><category term="Brython"></category></entry><entry><title>W16</title><link href="./w16.html" rel="alternate"></link><published>2016-12-26T14:35:00+08:00</published><updated>2016-12-26T14:35:00+08:00</updated><author><name>40523215</name></author><id>tag:,2016-12-26:./w16.html</id><summary type="html">&lt;p&gt;w16&lt;/p&gt;
+&lt;p&gt;&lt;button id="but3"&gt;玩猜數字遊戲&lt;/button&gt;&lt;/p&gt;</summary><category term="Brython"></category></entry><entry><title>W16</title><link href="./w16.html" rel="alternate"></link><published>2016-12-26T14:35:00+08:00</published><updated>2016-12-26T14:35:00+08:00</updated><author><name>40523215</name></author><id>tag:,2016-12-26:./w16.html</id><summary type="html">&lt;p&gt;w16&lt;/p&gt;
 
 
 &lt;!-- 導入 Brython 標準程式庫 --&gt;
@@ -105,24 +142,58 @@ brython(1);
 
 &lt;!-- 以下實際利用  Brython 畫圖 --&gt;
 
+&lt;!-- 導入 Brython 標準程式庫 --&gt;
+
+&lt;script type="text/javascript" 
+    src="https://cdn.rawgit.com/brython-dev/brython/master/www/src/brython_dist.js"&gt;
+&lt;/script&gt;
+
+&lt;!-- 啟動 Brython --&gt;
+
+&lt;script&gt;
+window.onload=function(){
+brython(1);
+}
+&lt;/script&gt;
+
+&lt;!-- 以下可以執行  Brython 程式 --&gt;
+
+&lt;div id="id3"&gt;&lt;/div&gt;
+
 &lt;script type="text/python3"&gt;
-from browser import alert
+from browser import document
+from browser import html
 import random
 
-ans = random.randint(1, 100)
+id3 = document["id3"]
+def guess(ev):
+    # 清除 id3 中的內容
+    id3.clear()
+    id3 &lt;= "開始玩猜數字遊戲" + html.BR()
+    標準答案 = random.randint(1, 100)
+    你猜的數字 = int(input("請輸入您所猜整數:"))
+    猜測次數 = 1
+    while 標準答案 != 你猜的數字:
+        if 標準答案 &lt; 你猜的數字:
+            #print("太大了，再猜一次 :)加油")
+            # 清除 id3 中的內容
+            id3.clear()
+            id3 &lt;= "猜第" + str(猜測次數) + "次, 太大了，再猜一次 :)加油" + html.BR()
+        else:
+            #print("太小了，再猜一次 :)加油")
+            # 清除 id3 中的內容
+            id3.clear()
+            id3 &lt;= "猜第" + str(猜測次數) + "次, 太小了，再猜一次 :)加油" + html.BR()
+        你猜的數字 = int(input("請輸入您所猜整數:"))
+        猜測次數 += 1
 
-a_in = int(input("輸入整數:"))
-guess = 1
+    #print("猜對了！總共猜了", 猜測次數, "次")
+    id3 &lt;= "猜對了！答案為" + str(標準答案) + ", 總共猜了" + str(猜測次數) + "次"
 
-while ans != a_in:
-    if a_in &lt; ans:
-        a_in = int(input("too small"))
-    else:
-        a_in = int(input("too big"))
-    guess += 1
+document["but3"].bind("click", guess)
+&lt;/script&gt;
 
-alert("恭喜答對 ,一共猜了" + (str(guess)) + "次")
-&lt;/script&gt;</summary><category term="Brython"></category></entry><entry><title>W15 練習</title><link href="./w15-lian-xi.html" rel="alternate"></link><published>2016-12-19T12:00:00+08:00</published><updated>2016-12-19T12:00:00+08:00</updated><author><name>40523215</name></author><id>tag:,2016-12-19:./w15-lian-xi.html</id><summary type="html">&lt;!-- 導入 Brython 標準程式庫 --&gt;
+&lt;p&gt;&lt;button id="but3"&gt;玩猜數字遊戲&lt;/button&gt;&lt;/p&gt;</summary><category term="Brython"></category></entry><entry><title>W15 練習</title><link href="./w15-lian-xi.html" rel="alternate"></link><published>2016-12-19T12:00:00+08:00</published><updated>2016-12-19T12:00:00+08:00</updated><author><name>40523215</name></author><id>tag:,2016-12-19:./w15-lian-xi.html</id><summary type="html">&lt;!-- 導入 Brython 標準程式庫 --&gt;
 
 &lt;script type="text/javascript" 
     src="https://cdn.rawgit.com/brython-dev/brython/master/www/src/brython_dist.js"&gt;
