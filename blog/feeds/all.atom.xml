@@ -64,7 +64,71 @@ while 標準答案 != 你猜的數字:
 print("猜對了！總共猜了", 猜測次數, "次")
 &lt;/script&gt;
 
-&lt;p&gt;&lt;button id="b1"&gt;玩猜數字遊戲&lt;/button&gt;&lt;/p&gt;</summary><category term="Brython"></category></entry><entry><title>W14 練習</title><link href="./w14-lian-xi.html" rel="alternate"></link><published>2016-12-12T14:35:00+08:00</published><updated>2016-12-12T14:35:00+08:00</updated><author><name>40523215</name></author><id>tag:,2016-12-12:./w14-lian-xi.html</id><summary type="html">&lt;p&gt;以下為第十四週開始的城市練習,要利用 &lt;a href="http://mde.tw/2016fallcp/course/Python3Programs.txt"&gt;http://mde.tw/2016fallcp/course/Python3Programs.txt&lt;/a&gt; 要整理Brython 的用法.
+&lt;p&gt;&lt;button id="b1"&gt;玩猜數字遊戲&lt;/button&gt;&lt;/p&gt;</summary><category term="Brython"></category></entry><entry><title>W15 練習</title><link href="./w15-lian-xi.html" rel="alternate"></link><published>2016-12-19T12:00:00+08:00</published><updated>2016-12-19T12:00:00+08:00</updated><author><name>40523215</name></author><id>tag:,2016-12-19:./w15-lian-xi.html</id><summary type="html">&lt;!-- 導入 Brython 標準程式庫 --&gt;
+
+&lt;script type="text/javascript" 
+    src="https://cdn.rawgit.com/brython-dev/brython/master/www/src/brython_dist.js"&gt;
+&lt;/script&gt;
+
+&lt;!-- 啟動 Brython --&gt;
+
+&lt;script&gt;
+window.onload=function(){
+brython(1);
+}
+&lt;/script&gt;
+
+&lt;!-- 以下可以執行  Brython 程式 --&gt;
+
+&lt;div id="con"&gt;&lt;/div&gt;
+
+&lt;script type="text/python3"&gt;
+from browser import document as do
+from browser import html
+c = do["con"]
+def compa(e):
+    your_input = input("請輸入一個整數!")
+    # 如何判斷所輸入的整數比 10 大
+
+    if int(your_input) &gt; 10:
+        c &lt;= "所輸入的整數:" + your_input + "比 10 大" + html.BR()
+    else:
+        c &lt;= "所輸入的整數:" + your_input + "比 10 小" + html.BR()
+
+#print("test")
+'''
+for i in range(5):
+    c &lt;= "test" + html.BR()
+'''
+do["b1"].bind("click", compa)
+&lt;/script&gt;
+
+&lt;p&gt;&lt;button id="b1"&gt;compa&lt;/button&gt;&lt;/p&gt;
+
+&lt;pre class="brush: python"&gt;
+&lt;div id="con"&gt;&lt;/div&gt;
+&lt;script type="text/python3"&gt;
+from browser import document as do
+from browser import html
+c = do["con"]
+def compa(e):
+    your_input = input("請輸入一個整數!")
+    # 如何判斷所輸入的整數比 10 大
+
+    if int(your_input) &gt; 10:
+        c &lt;= "所輸入的整數:" + your_input + "比 10 大" + html.BR()
+    else:
+        c &lt;= "所輸入的整數:" + your_input + "比 10 小" + html.BR()
+
+#print("test")
+'''
+for i in range(5):
+    c &lt;= "test" + html.BR()
+'''
+do["b1"].bind("click", compa)
+&lt;/script&gt;
+&lt;button id="b1"&gt;compa&lt;/button&gt;
+&lt;/pre&gt;</summary><category term="Brython"></category></entry><entry><title>W14 練習</title><link href="./w14-lian-xi.html" rel="alternate"></link><published>2016-12-12T14:35:00+08:00</published><updated>2016-12-12T14:35:00+08:00</updated><author><name>40523215</name></author><id>tag:,2016-12-12:./w14-lian-xi.html</id><summary type="html">&lt;p&gt;以下為第十四週開始的城市練習,要利用 &lt;a href="http://mde.tw/2016fallcp/course/Python3Programs.txt"&gt;http://mde.tw/2016fallcp/course/Python3Programs.txt&lt;/a&gt; 要整理Brython 的用法.
 &lt;/p&gt;
 &lt;!-- 導入 Brython 標準程式庫 --&gt;
 
@@ -3383,4 +3447,5 @@ ctx.closePath()
 ctx.fillStyle = '#fff'
 ctx.fill()
 &amp;lt;/script&amp;gt;
-&lt;/pre&gt;</summary><category term="使用導引"></category><category term="創造力"></category><category term="表達能力"></category><category term="協同設計"></category></entry></feed>
+&lt;/pre&gt;</summary><category term="使用導引"></category><category term="創造力"></category><category term="表達能力"></category><category term="協同設計"></category></entry><entry><title>W18</title><link href="./w18.html" rel="alternate"></link><published>2016-01-09T14:35:00+08:00</published><updated>2016-01-09T14:35:00+08:00</updated><author><name>40523215</name></author><id>tag:,2016-01-09:./w18.html</id><summary type="html">&lt;p&gt;w18&lt;/p&gt;
+</summary><category term="Brython"></category></entry></feed>
